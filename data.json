@@ -1,0 +1,74 @@
+{
+  "toyCars": [
+    {
+      "toyName": "Small Lamborghini Dual Drive Kids",
+      "image": "https://i5.walmartimages.com/asr/22e9f2df-5cfc-418f-a9cb-6590eeca3dba.76de19a93d3809ba55535de27337eb78.jpeg",
+      "subCategory": "small Lamborghini",
+      "price": "$19.99",
+      "availableQuantity": 21
+    },
+    {
+      "toyName": "Lamborghini Aventador ",
+      "image": "https://i5.walmartimages.com/asr/aa58ff13-86bb-4fd1-9204-0476f29d220f.f43c4cba3524b469924807b41900e4a3.jpeg",
+      "subCategory": "small Lamborghini",
+      "price": "$17.99",
+      "availableQuantity": 11
+    },
+    {
+      "toyName": "Pickup Truck",
+      "image": "https://i5.walmartimages.com/asr/9206e7d4-d903-48dc-b33b-865563905040_1.522a7bf6abdefb64aec4c4825375481c.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff",
+      "subCategory": "Truck",
+      "price": "$14.99",
+      "availableQuantity": 9
+    },
+    {
+      "toyName": "Dump Garbage Truck",
+      "image": "https://i5.walmartimages.com/asr/0d6c7d76-9dd0-4815-9125-f83f11f0c00b_1.4263bbe49303700abcd3c8e2d24f593c.jpeg",
+      "subCategory": "Truck",
+      "price": "$11.00",
+      "availableQuantity": 15
+    },
+    {
+      "toyName": "Yellow Taxi",
+      "image": "https://thumbs.dreamstime.com/b/yellow-cartoon-taxi-d-render-car-collection-40223171.jpg",
+      "subCategory": "Taxi",
+      "price": "$9.99",
+      "availableQuantity": 10
+    },
+    {
+      "toyName": "Wooden Taxi",
+      "image": "https://static.turbosquid.com/Preview/2014/07/06__14_25_01/taxi_vray_0000.jpg9d43e0a4-396c-4900-9cf3-6590cd3c6667Original.jpg",
+      "subCategory": "Taxi",
+      "price": "$19.99",
+      "availableQuantity": 13
+    },
+    {
+      "toyName": "1992 Jeep Wrangler",
+      "image": "https://shorturl.at/tvAV3",
+      "subCategory": "Jeep",
+      "price": "$12.99",
+      "availableQuantity": 6
+    },
+    {
+      "toyName": "Land Rover",
+      "image": "https://shorturl.at/wyOY5",
+      "subCategory": "Jeep",
+      "price": "$14.99",
+      "availableQuantity": 5
+    },
+    {
+      "toyName": "Promo Sound Chip Convertible",
+      "image": "https://www.qualitylogoproducts.com/stress-balls/sound-chip-convertible-stresstoy-hq.jpg?size=details",
+      "subCategory": "Convertible",
+      "price": "$16.99",
+      "availableQuantity": 7
+    },
+    {
+      "toyName": "Convertible Car Stress Ball",
+      "image": "https://www.qualitylogoproducts.com/stress-balls/convertible-stress-reliever-hq-189021.jpg?size=details_zoomed",
+      "subCategory": "Convertible",
+      "price": "$14.99",
+      "availableQuantity": 15
+    }
+  ]
+}
