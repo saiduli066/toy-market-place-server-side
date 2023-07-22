@@ -37,13 +37,19 @@ async function run() {
 
     const toyCollection = client.db("toyCarUser").collection("toyCollection");
     
-    app.post('/toy', async (req, res)=>{
+    // app.post('/toy', async (req, res)=>{
+    //   const toyData = req.body;
+    //   const result = await toyCollection.insertOne(toyData);
+    //   res.send(result);
+    // })
+
+// add toy
+    
+    app.post("/addToy", async (req, res) => {
       const toyData = req.body;
       const result = await toyCollection.insertOne(toyData);
       res.send(result);
-    })
-
-
+    });
 
 
 
