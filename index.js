@@ -43,14 +43,22 @@ async function run() {
     //   res.send(result);
     // })
 
+    app.get("/allToys", async (req, res) => {
+      const result = await toyCollection.find({}).toArray();
+      res.send(result);
+    });
+
 // add toy
     
-    app.post("/addToy", async (req, res) => {
+    app.post("/addToys", async (req, res) => {
       const toyData = req.body;
       const result = await toyCollection.insertOne(toyData);
       res.send(result);
     });
 
+    //
+
+    
 
 
 
