@@ -10,9 +10,9 @@ app.use(cors());
 app.use(express.json())
 
 
-app.get("/toys", (req, res) => {
-    res.send(toys);
-});
+// app.get("/toys", (req, res) => {
+//     res.send(toys);
+// });
 
 
 // mongodb codes..
@@ -36,17 +36,29 @@ async function run() {
 
 
     const toyCollection = client.db("toyCarUser").collection("toyCollection");
+    const toyApi = client.db("toyCarUser").collection("toyApi");
     
-    // app.post('/toy', async (req, res)=>{
-    //   const toyData = req.body;
-    //   const result = await toyCollection.insertOne(toyData);
-    //   res.send(result);
-    // })
+  
 
+    app.get("/toys", async (req, res) => {
+      const result = await toyApi.find().toArray();
+      res.send(result);
+    });
+
+  
     app.get("/allToys", async (req, res) => {
       const result = await toyCollection.find({}).toArray();
       res.send(result);
     });
+
+    app.get('/my-toys', async (req, res) => {
+      let query = {};
+      if (req.query.email) {
+        query = { email: req.query.email };
+      }
+      const result = await toyCollection.find(query).toArray();
+      res.send(result);
+    })
 
 // add toy
     
