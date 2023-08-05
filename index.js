@@ -1,18 +1,53 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const cors = require("cors");
+
 const port = process.env.PORT || 5000;
-const toys = require("./data.json");
 require("dotenv").config();
 
+
 // middleware
-app.use(cors());
+// app.use(cors());
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//   })
+// );
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
+
 app.use(express.json())
-
-
-// app.get("/toys", (req, res) => {
-//     res.send(toys);
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
 // });
+
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  next();
+});
+
+app.get("/toys", (req, res) => {
+    res.send(toys);
+});
 
 
 // mongodb codes..
@@ -67,6 +102,31 @@ async function run() {
       const result = await toyCollection.insertOne(toyData);
       res.send(result);
     });
+
+
+    // update
+
+    app.put('/my-toys/:id', async (req, res) => {
+      const id = req.params.id;
+      const updatedData = req.body;
+      console.log(updatedData);
+      try {
+        const query = { _id: new ObjectId(id) };
+        const update = { $set: updatedData };
+        const result = await toyCollection.updateOne(query, update);
+
+        if (result.modifiedCount === 1) {
+          res.send({ message: 'Toy updated successfully' });
+        } else {
+          res.send({ message: 'No toys were updated' });
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: 'An error occurred during update' });
+      }
+    });
+
+
 
 
   //Delete a toy
