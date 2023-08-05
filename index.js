@@ -16,7 +16,7 @@ app.use(express.json())
 
 
 // mongodb codes..
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yqivy75.mongodb.net/?retryWrites=true&w=majority`;
 // console.log(uri);
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -47,7 +47,7 @@ async function run() {
 
   
     app.get("/allToys", async (req, res) => {
-      const result = await toyCollection.find({}).toArray();
+      const result = await toyCollection.find({}).limit(20).toArray();
       res.send(result);
     });
 
@@ -60,7 +60,7 @@ async function run() {
       res.send(result);
     })
 
-// add toy
+// add a toy
     
     app.post("/addToys", async (req, res) => {
       const toyData = req.body;
@@ -68,7 +68,15 @@ async function run() {
       res.send(result);
     });
 
-    //
+
+  //Delete a toy
+    app.delete("/my-toys/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const query = { _id: new ObjectId(id) };
+      const result = await toyCollection.deleteOne(query);
+      res.send(result);
+    });
 
     
 
