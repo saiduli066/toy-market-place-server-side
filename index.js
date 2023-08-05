@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config();
 
 const port = process.env.PORT || 5000;
-require("dotenv").config();
 
 
 // middleware
@@ -19,35 +19,33 @@ app.use(
   })
 );
 
-
 app.use(express.json())
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-
-  res.setHeader("Access-Control-Allow-Credentials", true);
-
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-app.get("/toys", (req, res) => {
-    res.send(toys);
-});
+// app.use(function (req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
+
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With,content-type"
+//   );
+
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+
+//   next();
+// });
+
+
 
 
 // mongodb codes..
@@ -75,9 +73,19 @@ async function run() {
     
   
 
+    // app.get("/toys", async (req, res) => {
+    //   const result = await toyApi.find().toArray();
+    //   res.send(result);
+    // });
+
     app.get("/toys", async (req, res) => {
-      const result = await toyApi.find().toArray();
-      res.send(result);
+      try {
+        const result = await toyApi.find().toArray();
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "An error occurred fetching toys" });
+      }
     });
 
   
